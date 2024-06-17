@@ -1,0 +1,28 @@
+OrdererOrgs:
+  - Name: Orderer
+    Domain: example.com
+    Specs:
+      - Hostname: orderer
+
+PeerOrgs:
+  - Name: Korea
+    Domain: korea.example.com
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+
+  - Name: USA
+    Domain: usa.example.com
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+
+  - Name: Mexico
+    Domain: mexico.example.com
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+
