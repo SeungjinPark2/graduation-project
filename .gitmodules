@@ -4,3 +4,6 @@
 [submodule "interface"]
 	path = interface
 	url = git@github.com:SeungjinPark2/interface.git
+[submodule "server"]
+	path = server
+	url = git@github.com:SeungjinPark2/server.git
