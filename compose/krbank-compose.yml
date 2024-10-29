@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  krbank_ui:
+    image: krbank-ui:latest
+    container_name: krbank-ui
+    ports:
+      - "5000:80"
+    depends_on:
+      - krbank
+    environment:
+      - BACKEND_URL=krbank
+    networks:
+      - fabric_test
+
+  krbank:
+    image: krbank:latest
+    container_name: krbank
+    expose:
+      - "3000"
+    volumes:
+      - ../fabric-samples/remittance-server/src/wallet/:/opt/dist/wallet/
+    networks:
+      - fabric_test
+    environment:
+      - NODE_ENV=prod
+
+networks:
+  fabric_test:
+    external: true

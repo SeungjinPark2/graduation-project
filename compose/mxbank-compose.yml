@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  mxbank_ui:
+    image: mxbank-ui:latest
+    container_name: mxbank-ui
+    ports:
+      - "5001:80"
+    depends_on:
+      - mxbank
+    environment:
+      - BACKEND_URL=mxbank
+    networks:
+      - fabric_test
+
+  mxbank:
+    image: mxbank:latest
+    container_name: mxbank
+    expose:
+      - "3000"
+    volumes:
+      - ../fabric-samples/remittance-server/src/wallet/:/opt/dist/wallet/
+    networks:
+      - fabric_test
+    environment:
+      - NODE_ENV=prod
+
+networks:
+  fabric_test:
+    external: true

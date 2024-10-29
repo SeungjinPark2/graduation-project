@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  usbank_ui:
+    image: usbank-ui:latest
+    container_name: usbank-ui
+    ports:
+      - "5002:80"
+    depends_on:
+      - usbank
+    environment:
+      - BACKEND_URL=usbank
+    networks:
+      - fabric_test
+
+  usbank:
+    image: usbank:latest
+    container_name: usbank
+    expose:
+      - "3000"
+    volumes:
+      - ../fabric-samples/remittance-server/src/wallet/:/opt/dist/wallet/
+    networks:
+      - fabric_test
+    environment:
+      - NODE_ENV=prod
+
+networks:
+  fabric_test:
+    external: true
